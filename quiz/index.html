@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>DigitalArtScales - Quiz</title>
+
+    <meta
+      name="description"
+      content="Добро пожаловать на DigitalArtScales, онлайн-тест на определение ваших взглядов по различным идеологическим вопросам. Вам будут даны утверждения, по каждому из которых вы должны ответить своим мнением, от «Полностью согласен» до «Абсолютно не согласен», каждый ответ будет слегка влиять на ваши значения по каждой из семи осей."
+    />
+    <link rel="stylesheet" href="/style.css" type="text/css" media="screen" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <meta property="og:url" content="https://DigitalArtScales.github.io/" />
+    <meta property="og:title" content="DigitalArtScales" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta
+      property="og:description"
+      content="Добро пожаловать на DigitalArtScales, онлайн-тест на определение ваших взглядов по различным идеологическим вопросам. Вам будут даны утверждения, по каждому из которых вы должны ответить своим мнением, от «Полностью согласен» до «Абсолютно не согласен», каждый ответ будет слегка влиять на ваши значения по каждой из семи осей."
+    />
+    <meta property="og:image" content="/images/facebook-preview.jpg" />
+  </head>
+
+  <body>
+    <header>
+      <div id="header">
+        <h1><a href="/">DigitalArtScales</a></h1>
+      </div>
+    </header>
+
+    <div id="content">
+      <div id="mainFrame">
+        <h2 id="question-number">Загрузка...</h2>
+        <div class="questionBox"><p id="question-text"></p></div>
+        <div class="navButtons questionButtons">
+          <button onclick="next_question(1)" class="strong-agree">
+            Полностью согласен
+          </button>
+          <button onclick="next_question(2/3)" class="agree">
+            Скорее согласен
+          </button>
+          <button onclick="next_question(0)" class="neutral">
+            Не знаю/Не уверен
+          </button>
+          <button onclick="next_question(-2/3)" class="disagree">
+            Скорее не согласен
+          </button>
+          <button onclick="next_question(-1)" class="strong-disagree">
+            Абсолютно не согласен
+          </button>
+
+          <a href="#" class="button" onclick="prev_question()" id="back_button">
+            Предыдущий вопрос
+          </a>
+          <a class="button" href="/" id="back_button_off">
+            Вернуться на главную страницу
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+    </div>
+
+    <script src="/quiz.js"></script>
+  </body>
+</html>
