@@ -33,30 +33,13 @@
       <div id="mainFrame">
         <h2 id="question-number">Загрузка...</h2>
         <div class="questionBox"><p id="question-text"></p></div>
-        <div class="navButtons questionButtons">
-          <button onclick="next_question(1)" class="strong-agree">
-            Полностью согласен
-          </button>
-          <button onclick="next_question(2/3)" class="agree">
-            Скорее согласен
-          </button>
-          <button onclick="next_question(0)" class="neutral">
-            Не знаю/Не уверен
-          </button>
-          <button onclick="next_question(-2/3)" class="disagree">
-            Скорее не согласен
-          </button>
-          <button onclick="next_question(-1)" class="strong-disagree">
-            Абсолютно не согласен
-          </button>
-
+        <div class="navButtons questionButtons" id="question-options"></div>
           <a href="#" class="button" onclick="prev_question()" id="back_button">
             Предыдущий вопрос
           </a>
           <a class="button" href="/" id="back_button_off">
             Вернуться на главную страницу
           </a>
-        </div>
       </div>
     </div>
 
