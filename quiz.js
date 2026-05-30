@@ -2,30 +2,30 @@
 
 var questions = [
   {
-    question: "1...",
+    question: "<h1><b>Тема 1</b></h1><b>1)</b>...<br><br><b>2)</b>...<br><b>3)</b>...<br><br><b>4)</b>... .",
     answer: 0,
     type: "default",
     valuesYes: [{ axis: "c0", value: 3 }],
     valuesNo:  [{ axis: "c1", value: 3 }]
   },
   {
-    question: "2...",
+    question: "<h1>Тема 2</h1><b>1)</b>...<br><br><b>2)</b>...<br><b>3)</b>...<br><br><b>4)</b>... .",
     answer: 0,
-    type: "bothoptions",
+    type: "testoption",
     valuesYes: [{ axis: "c0", value: 3 }],
     valuesNo:  [{ axis: "c1", value: 3 }]
   },
   {
-    question: "3...",
+    question: "Согласны ли вы со следующим мнением?",
     answer: 0,
-    type: "default",
+    type: "yesno",
     valuesYes: [{ axis: "c0", value: 3 }, { axis: "b0", value: 3 }],
     valuesNo:  [{ axis: "c1", value: 3 }, { axis: "b1", value: 3 }]
   },
   {
-    question: "4...",
+    question: "С каким из двух предложенных ниже мнений вы согласны больше?",
     answer: 0,
-    type: "testoption",
+    type: "bothoptions",
     valuesYes: [{ axis: "j0", value: 3 }],
     valuesNo:  [{ axis: "j1", value: 3 }]
   }
@@ -64,17 +64,33 @@ function init_question() {
 
   if (currentQuestion.type === "bothoptions") {
     optionsContainer.innerHTML = `
-      <button class="button" onclick="next_question(1)" style="background-color: #1b5e20;">Всегда</button> <br>
-      <button class="button" onclick="next_question(2/3)" style="background-color: #4caf50;">Часто</button> <br>
-      <button class="button" onclick="next_question(0)" style="background-color: #bbbbbb;">Иногда</button> <br>
-      <button class="button" onclick="next_question(-2/3)" style="background-color: #f44336;">Редко</button> <br>
-      <button class="button" onclick="next_question(-1)" style="background-color: #b71c1c;">Никогда</button>`;
+      <button class="button" onclick="next_question(1)" style="background-color: #1b5e20;">Однозначно с 1-ым</button> <br>
+      <button class="button" onclick="next_question(2/3)" style="background-color: #4caf50;">Скорее с 1-ым</button> <br>
+      <button class="button" onclick="next_question(0)" style="background-color: #bbbbbb;">Ни с каким/Не могу определиться</button> <br>
+      <button class="button" onclick="next_question(-2/3)" style="background-color: #f44336;">Скорее со 2-ым</button> <br>
+      <button class="button" onclick="next_question(-1)" style="background-color: #b71c1c;">Однозначно со 2-ым</button>`;
     } 
   else if (currentQuestion.type === "testoption") {
     optionsContainer.innerHTML = `
       <button class="button" onclick="next_question(1)" style="background-color: #4e9dba;">Первая кнопка</button> <br>
       <button class="button" onclick="next_question(-1)" style="background-color: #af4b7a;">Вторая кнопка</button> <br>
       <button class="button" onclick="next_question(0)" style="background-color: #bbbbbb;">Никакая из этих</button>`;
+    } 
+  else if (currentQuestion.type === "frequency") {
+    optionsContainer.innerHTML = `
+      <button class="button" onclick="next_question(1)" style="background-color: #1b5e20;">Всегда</button> <br>
+      <button class="button" onclick="next_question(3/4)" style="background-color: #4caf50;">Часто</button> <br>
+      <button class="button" onclick="next_question(1/2)" style="background-color: #bbbbbb;">Иногда</button> <br>
+      <button class="button" onclick="next_question(1/4)" style="background-color: #f44336;">Редко</button> <br>
+      <button class="button" onclick="next_question(0)" style="background-color: #b71c1c;">Никогда</button>`;
+    } 
+  else if (currentQuestion.type === "yesno") {
+    optionsContainer.innerHTML = `
+      <button class="button" onclick="next_question(1)" style="background-color: #1b5e20;">Да</button> <br>
+      <button class="button" onclick="next_question(3/4)" style="background-color: #4caf50;">Отчасти</button> <br>
+      <button class="button" onclick="next_question(1/2)" style="background-color: #bbbbbb;">Не знаю/Не уверен</button> <br>
+      <button class="button" onclick="next_question(1/4)" style="background-color: #f44336;">Скорее нет</button> <br>
+      <button class="button" onclick="next_question(0)" style="background-color: #b71c1c;">Нет</button>`;
     } 
   else {
     optionsContainer.innerHTML = `
