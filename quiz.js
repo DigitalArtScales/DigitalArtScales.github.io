@@ -4,66 +4,30 @@ var questions = [
   {
     question: "1...",
     answer: 0,
-    valuesYes: [
-      {
-        axis: "c0",
-        value: 3
-      }
-    ],
-    valuesNo: [
-      {
-        axis: "c1",
-        value: 3
-      }
-    ]
+    type: "default",
+    valuesYes: [{ axis: "c0", value: 3 }],
+    valuesNo:  [{ axis: "c1", value: 3 }]
   },
   {
     question: "2...",
     answer: 0,
-    valuesYes: [
-      {
-        axis: "c0",
-        value: 3
-      }
-    ],
-    valuesNo: [
-      {
-        axis: "c1",
-        value: 3
-      }
-    ]
+    type: "bothoptions",
+    valuesYes: [{ axis: "c0", value: 3 }],
+    valuesNo:  [{ axis: "c1", value: 3 }]
   },
   {
     question: "3...",
     answer: 0,
-    valuesYes: [
-      {
-        axis: "exo",
-        value: 3
-      }
-    ],
-    valuesNo: [
-      {
-        axis: "meta",
-        value: 3
-      }
-    ]
+    type: "default",
+    valuesYes: [{ axis: "c0", value: 3 }, { axis: "b0", value: 3 }],
+    valuesNo:  [{ axis: "c1", value: 3 }, { axis: "b1", value: 3 }]
   },
   {
     question: "4...",
     answer: 0,
-    valuesYes: [
-      {
-        axis: "mono",
-        value: 3
-      }
-    ],
-    valuesNo: [
-      {
-        axis: "poly",
-        value: 3
-      }
-    ]
+    type: "testoption",
+    valuesYes: [{ axis: "j0", value: 3 }],
+    valuesNo:  [{ axis: "j1", value: 3 }]
   }
 ];
 
@@ -87,12 +51,40 @@ shuffle(questions);
 init_question();
 
 function init_question() {
+  const currentQuestion = questions[qn];
   document.getElementById("question-text").innerHTML = questions[qn].question;
   document.getElementById(
     "question-number"
   ).innerHTML = "Вопрос %num% из %sum%"
     .replace("%num%", qn + 1)
     .replace("%sum%", questions.length);
+
+  const optionsContainer = document.getElementById("question-options");
+  optionsContainer.innerHTML = "";
+
+  if (currentQuestion.type === "bothoptions") {
+    optionsContainer.innerHTML = `
+      <button class="button" onclick="next_question(1)" style="background-color: #1b5e20;">Всегда</button> <br>
+      <button class="button" onclick="next_question(2/3)" style="background-color: #4caf50;">Часто</button> <br>
+      <button class="button" onclick="next_question(0)" style="background-color: #bbbbbb;">Иногда</button> <br>
+      <button class="button" onclick="next_question(-2/3)" style="background-color: #f44336;">Редко</button> <br>
+      <button class="button" onclick="next_question(-1)" style="background-color: #b71c1c;">Никогда</button>`;
+    } 
+  else if (currentQuestion.type === "testoption") {
+    optionsContainer.innerHTML = `
+      <button class="button" onclick="next_question(1)" style="background-color: #4e9dba;">Первая кнопка</button> <br>
+      <button class="button" onclick="next_question(-1)" style="background-color: #af4b7a;">Вторая кнопка</button> <br>
+      <button class="button" onclick="next_question(0)" style="background-color: #bbbbbb;">Никакая из этих</button>`;
+    } 
+  else {
+    optionsContainer.innerHTML = `
+      <button class="button" onclick="next_question(1)" style="background-color: #1b5e20;">Полностью согласен</button> <br>
+      <button class="button" onclick="next_question(2/3)" style="background-color: #4caf50;">Скорее согласен</button> <br>
+      <button class="button" onclick="next_question(0)" style="background-color: #bbbbbb;">Не знаю/Не уверен</button> <br>
+      <button class="button" onclick="next_question(-2/3)" style="background-color: #f44336;">Скорее не согласен</button> <br>
+      <button class="button" onclick="next_question(-1)" style="background-color: #b71c1c;">Абсолютно не согласен</button>`;
+  }
+  
   if (qn == 0) {
     document.getElementById("back_button").style.display = "none";
     document.getElementById("back_button_off").style.display = "block";
